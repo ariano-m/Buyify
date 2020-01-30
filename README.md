@@ -14,19 +14,21 @@ Distinguimos tres tipos de usuarios:
 
 ## Entidades principales
 * Producto
-* Categoría de producto
+* Categoría de producto (es un campo de producto)
 * Pedido
 * Usuario
 * Tipo de usuario
 * Oferta
 * Reseña
 
-## Funcionalidades servicio interno
+## Aplicación
 * Auth token: proporciona acceso al servicio interno
 * Devolver lista de productos (paginated)
 * Devolver lista de usuarios registrados
 * Devolver lista de pedidos
 * Insertar nuevo producto
+
+## Funcionalidades servicio interno
 * Enviar mails
 * Reescalar imágenes en determinadas acciones (añadir producto)
 
