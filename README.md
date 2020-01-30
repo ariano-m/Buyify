@@ -1,5 +1,7 @@
 # Buyify
 
+# prueba
+
 Web de compra en la que se podrán realizar acciones propias de una tienda online tales como visualizar los productos, registrarse como usuario, añadir al carrito de la compra, realizar pedidos, ver el historial de pedidos, generar facturas, etc.
 
 Constará de una parte pública que permitirá a todos los usuarios navegar por la tienda, iniciar sesión, registrarse y añadir productos al carrito de compra.
