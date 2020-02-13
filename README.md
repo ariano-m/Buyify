@@ -14,15 +14,12 @@ Distinguimos tres tipos de usuarios:
 
 ## Entidades principales
 * Producto
-* Categoría de producto (es un campo de producto)
 * Pedido
 * Usuario
-* Tipo de usuario
 * Oferta
 * Reseña
 
 ## Aplicación
-* Auth token: proporciona acceso al servicio interno
 * Devolver lista de productos (paginated)
 * Devolver lista de usuarios registrados
 * Devolver lista de pedidos
