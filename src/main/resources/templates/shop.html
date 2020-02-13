@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Productos</h2>
+
+<table style="width:100%">
+  <tr>
+    {{#product}}
+    <td><a href="http://www.localhost:8080/productos/{{id}}"><center><img src="{{url}}" style="max-width: 35%;">
+    <br>{{name}}
+    <br>{{price}}€
+    </center></a></td>
+    {{/product}}
+  </tr>
+</table>
+
+</body>
+</html>

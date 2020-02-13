@@ -13,17 +13,21 @@ public class Product {
     private long id;
     private String name;
     private String category;
-    private long price;
+    private float price;
+    private int stock;
     private String description;
+    private String url;
 
     protected Product() {
     }
 
-    public Product(String name, String category, long price, String description) {
+    public Product(String name, String category, float price, int stock, String description, String url) {
         this.name = name;
         this.category = category;
         this.price = price;
+        this.stock = stock;
         this.description = description;
+        this.url = url;
     }
 
     public long getId() {
@@ -50,12 +54,20 @@ public class Product {
         this.category = category;
     }
 
-    public long getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(float price) {
         this.price = price;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public String getDescription() {
@@ -64,6 +76,14 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
 }
