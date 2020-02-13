@@ -7,10 +7,10 @@
 <table style="width:100%">
   <tr>
     {{#product}}
-    <td><a href="http://www.localhost:8080/productos/{{id}}"><center><img src="{{url}}" style="max-width: 35%;">
+    <td><a href="/productos/{{id}}" style="text-align: center;"><img src="{{url}}" style="max-width: 35%;">
     <br>{{name}}
-    <br>{{price}}€
-    </center></a></td>
+      <br>{{price}}€
+    </a></td>
     {{/product}}
   </tr>
 </table>
