@@ -38,9 +38,8 @@ public class ReviewController {
 		
 		Optional<Product> producto = productRepository.findById(productId);
 		
-		Review review = new Review(producto.get(), user.getId(), date, reviewText);
+		Review review = new Review(producto.get(), user, date, reviewText);
 		reviewRepository.save(review);
-		
 		
 		model.addAttribute("id", id);
 		return "reviewAdded";

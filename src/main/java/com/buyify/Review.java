@@ -9,9 +9,12 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long userId;
+
     private Date date;
     private String text;
+
+    @OneToOne
+    private User user;
 
     @ManyToOne
     private Product product;
@@ -19,9 +22,9 @@ public class Review {
     protected Review() {
     }
 
-    public Review(Product product, long userId, Date date, String text) {
+    public Review(Product product, User user, Date date, String text) {
         this.product = product;
-        this.userId = userId;
+        this.user = user;
         this.date = date;
         this.text = text;
     }
@@ -42,12 +45,12 @@ public class Review {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getDate() {

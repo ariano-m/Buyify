@@ -58,6 +58,7 @@ public class DatabaseUsage implements CommandLineRunner {
         productRepository.save(p6);
 
         Review r1 = new Review();
+        r1.setUser(u1);
         r1.setText("Increíble perfume con notas dulces.");
         r1.setProduct(p3);
 
