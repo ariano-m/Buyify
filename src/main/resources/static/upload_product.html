@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
 <body>
 
 <h2>Añadir producto</h2>
 
- <form action="productos" method="post">
+ <form action="/productos/nuevoProducto" method="post">
   <label for="name">Nombre:</label>
   <input id="name" name="name" type="text"><br><br>
   
@@ -24,7 +26,7 @@
   <textarea cols=40 id="description" name="description" rows=5></textarea><br><br>
   
   <input type="submit" value="Subir producto">
-</form> 
+ </form>
 
 </body>
 </html>
