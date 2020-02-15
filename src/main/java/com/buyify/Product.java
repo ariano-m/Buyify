@@ -3,10 +3,7 @@ package com.buyify;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -20,8 +17,9 @@ public class Product {
     private int stock;
     private String description;
     private String url;
-    //TODO:Relacion
-    private List<Review> reviews = new ArrayList<>();
+
+    @OneToMany(mappedBy = "product")
+    private List<Review> reviews;
 
     protected Product() {
     }
@@ -93,6 +91,18 @@ public class Product {
     
     public List<Review> getReviews() {
     	return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void addReview(Review review) {
+        reviews.add(review);
+    }
+
+    public void removeReview(Review review) {
+        reviews.remove(review);
     }
 
 }

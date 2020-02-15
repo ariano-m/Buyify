@@ -32,21 +32,15 @@ public class ShopController {
         return "shop";
     }
 
-    // TODO: arreglar vista reviews
     @GetMapping("/productos/{id}")
     public String viewProduct(Model model, @PathVariable long id) {
         Optional<Product> product = productRepository.findById(id);
         Optional<List<Review>> reviewList = product.map(Product::getReviews);
-        List<User> users = new ArrayList<User>();
-        
-        
-        
-        
-   
-//        Optional<User> user = userRepository.findById(reviewList.map(Review::getUserId));
+
         model.addAttribute("product", product.get());
-        model.addAttribute("id",id);
-        model.addAttribute("review", reviewList.get());        
+        model.addAttribute("id", id);
+        model.addAttribute("review", reviewList.get());
+
         return "product_details";
     }
 

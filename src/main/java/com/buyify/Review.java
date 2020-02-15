@@ -1,9 +1,6 @@
 package com.buyify;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -12,21 +9,31 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long productId;
     private long userId;
     private int score;
     private Date date;
-    private String review;
+    private String text;
+
+    @ManyToOne
+    private Product product;
 
     protected Review() {
     }
 
-    public Review(long productId, long userId, int score, Date date, String review) {
-        this.productId = productId;
+    public Review(Product product, long userId, int score, Date date, String text) {
+        this.product = product;
         this.userId = userId;
         this.score = score;
         this.date = date;
-        this.review = review;
+        this.text = text;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public long getId() {
@@ -35,14 +42,6 @@ public class Review {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getProductId() {
-        return productId;
-    }
-
-    public void setProductId(long productId) {
-        this.productId = productId;
     }
 
     public long getUserId() {
@@ -69,16 +68,12 @@ public class Review {
         this.date = date;
     }
 
-    public String getReview() {
-        return review;
+    public String getText() {
+        return text;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setText(String review) {
+        this.text = review;
     }
-    
-//    public User getUser() {
-//    	return 
-//    }
 
 }
