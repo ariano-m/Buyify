@@ -1,9 +1,6 @@
 package com.buyify;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -12,21 +9,32 @@ public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long productId;
-    private long userId;
-    private int score;
+
     private Date date;
-    private String review;
+    private String text;
+
+    @OneToOne
+    private User user;
+
+    @ManyToOne
+    private Product product;
 
     protected Review() {
     }
 
-    public Review(long productId, long userId, int score, Date date, String review) {
-        this.productId = productId;
-        this.userId = userId;
-        this.score = score;
+    public Review(Product product, User user, Date date, String text) {
+        this.product = product;
+        this.user = user;
         this.date = date;
-        this.review = review;
+        this.text = text;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     public long getId() {
@@ -37,28 +45,12 @@ public class Review {
         this.id = id;
     }
 
-    public long getProductId() {
-        return productId;
+    public User getUser() {
+        return user;
     }
 
-    public void setProductId(long productId) {
-        this.productId = productId;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getDate() {
@@ -69,12 +61,12 @@ public class Review {
         this.date = date;
     }
 
-    public String getReview() {
-        return review;
+    public String getText() {
+        return text;
     }
 
-    public void setReview(String review) {
-        this.review = review;
+    public void setText(String review) {
+        this.text = review;
     }
 
 }

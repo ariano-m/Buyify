@@ -10,10 +10,18 @@ import java.util.List;
 public class DatabaseUsage implements CommandLineRunner {
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ReviewRepository reviewRepository;
 
     @Override
     public void run(String... args) throws Exception {
+
+        User u1 = new User("Bustamante", "bustamante@foo.foo", "123");
 
         Product p1 = new Product("Solán de Cabras", "alimentación", 1.2F, 5,
                 "Agua mineral natural.",
@@ -39,6 +47,9 @@ public class DatabaseUsage implements CommandLineRunner {
                 "Color amarillo verdoso pálido con destellos alimonados, brillante, limpio y cristalino. Aromas de intensidad media con claras notas minerales.",
                 "https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/201909/24/00118775700711____2__600x600.jpg");
 
+
+        userRepository.save(u1);
+
         productRepository.save(p1);
         productRepository.save(p2);
         productRepository.save(p3);
@@ -46,10 +57,21 @@ public class DatabaseUsage implements CommandLineRunner {
         productRepository.save(p5);
         productRepository.save(p6);
 
+        Review r1 = new Review();
+        r1.setUser(u1);
+        r1.setText("Increíble perfume con notas dulces.");
+        r1.setProduct(p3);
+
+        reviewRepository.save(r1);
 
         List<Product> query = productRepository.findAll();
         for (Product p : query) {
             System.out.println("PRODUCTO= " + p.getName());
+        }
+
+        List<Review> query2 = reviewRepository.findAll();
+        for (Review r : query2) {
+            System.out.println("REVIEW= " + "producto: " + r.getProduct().getName() + " | " + r.getText());
         }
     }
 }

@@ -6,14 +6,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Controller
 public class ShopController {
 
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private ReviewRepository reviewRepository;
+    
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/productos")
     public String shop(Model model) {
@@ -26,7 +35,11 @@ public class ShopController {
     @GetMapping("/productos/{id}")
     public String viewProduct(Model model, @PathVariable long id) {
         Optional<Product> product = productRepository.findById(id);
+        Optional<List<Review>> reviewList = product.map(Product::getReviews);
+
         model.addAttribute("product", product.get());
+        model.addAttribute("id", id);
+        model.addAttribute("review", reviewList.get());
 
         return "product_details";
     }
