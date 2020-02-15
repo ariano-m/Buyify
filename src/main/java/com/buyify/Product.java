@@ -1,5 +1,8 @@
 package com.buyify;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +20,8 @@ public class Product {
     private int stock;
     private String description;
     private String url;
+    //TODO:Relacion
+    private List<Review> reviews = new ArrayList<>();
 
     protected Product() {
     }
@@ -84,6 +89,10 @@ public class Product {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+    
+    public List<Review> getReviews() {
+    	return reviews;
     }
 
 }

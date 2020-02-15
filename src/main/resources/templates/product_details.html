@@ -17,6 +17,23 @@
 </table>
 
 <button type="button">Añadir al carrito</button>
+<br>
+<br>
+
+<h3>Reseñas</h3>
+    {{#review}}
+		<h6>review.idUser.nombre</h6>
+    {{/review}}
+<br>
+<br>
+<h3>Escribir reseña sobre este producto</h3>
+<form action="/productos/{{id}}/nuevaReview" method="post">
+	<textarea name='review' rows=5 cols=40></textarea> 
+	<input type='hidden' value="{{id}}">
+	<br>
+	<br>
+	<input type='submit' value='Enviar'>
+</form>
 
 </body>
 </html>

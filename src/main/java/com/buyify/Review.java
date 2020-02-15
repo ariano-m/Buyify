@@ -76,5 +76,9 @@ public class Review {
     public void setReview(String review) {
         this.review = review;
     }
+    
+//    public User getUser() {
+//    	return 
+//    }
 
 }
