@@ -10,7 +10,6 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private long userId;
-    private int score;
     private Date date;
     private String text;
 
@@ -20,10 +19,9 @@ public class Review {
     protected Review() {
     }
 
-    public Review(Product product, long userId, int score, Date date, String text) {
+    public Review(Product product, long userId, Date date, String text) {
         this.product = product;
         this.userId = userId;
-        this.score = score;
         this.date = date;
         this.text = text;
     }
@@ -50,14 +48,6 @@ public class Review {
 
     public void setUserId(long userId) {
         this.userId = userId;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public Date getDate() {
