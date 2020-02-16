@@ -20,6 +20,9 @@ public class DatabaseUsage implements CommandLineRunner {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    @Autowired
+    private PromotionRepository promotionRepository;
+
     @Override
     public void run(String... args) throws Exception {
 
@@ -63,6 +66,10 @@ public class DatabaseUsage implements CommandLineRunner {
 
         reviewRepository.save(r1);
 
+        Promotion pr1 = new Promotion(20);
+        pr1.setProduct(p3);
+        promotionRepository.save(pr1);
+
         List<Product> query = productRepository.findAll();
         for (Product p : query) {
             System.out.println("PRODUCTO= " + p.getName());
@@ -71,6 +78,11 @@ public class DatabaseUsage implements CommandLineRunner {
         List<Review> query2 = reviewRepository.findAll();
         for (Review r : query2) {
             System.out.println("REVIEW= " + "producto: " + r.getProduct().getName() + " | " + r.getText());
+        }
+
+        List<Promotion> query3 = promotionRepository.findAll();
+        for (Promotion r : query3) {
+            System.out.println("PROMOTION= " + "producto: " + r.getProduct().getName() + " | " + r.getPromotion());
         }
     }
 }

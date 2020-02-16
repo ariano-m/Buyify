@@ -17,6 +17,9 @@ public class ShopController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private PromotionRepository promotionRepository;
     
     @Autowired
     private ReviewRepository reviewRepository;
@@ -37,9 +40,12 @@ public class ShopController {
         Optional<Product> product = productRepository.findById(id);
         Optional<List<Review>> reviewList = product.map(Product::getReviews);
 
+        Promotion promotion = promotionRepository.findByProductId(id);
+
         model.addAttribute("product", product.get());
         model.addAttribute("id", id);
         model.addAttribute("review", reviewList.get());
+        model.addAttribute("promotion", promotion);
 
         return "product_details";
     }

@@ -1,6 +1,7 @@
 package com.buyify;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -13,11 +14,12 @@ public class Promotion {
     private long id;
 
     @Min(1)
+    @Max(100)
     @NotNull(message = "Promotion value may not be null")
     private int promotion;
 
-    @OneToMany(mappedBy = "promotion", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Product> products;
+    @OneToOne
+    private Product product;
 
     protected Promotion() {
     }
@@ -42,20 +44,12 @@ public class Promotion {
         this.promotion = promotion;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
-    public void addProducts(Product product) {
-        this.products.add(product);
-    }
-
-    public void removeProducts(Product product) {
-        this.products.remove(product);
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }
