@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.util.List;
 
 @Controller
@@ -21,7 +23,7 @@ public class DatabaseUsage implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User u1 = new User("Bustamante", "bustamante@foo.foo", "123");
+        User u1 = new User("Bustamante", "bustamante_", "liz@sen.ma.gov", "12345678");
 
         Product p1 = new Product("Solán de Cabras", "alimentación", 1.2F, 5,
                 "Agua mineral natural.",
@@ -57,10 +59,7 @@ public class DatabaseUsage implements CommandLineRunner {
         productRepository.save(p5);
         productRepository.save(p6);
 
-        Review r1 = new Review();
-        r1.setUser(u1);
-        r1.setText("Increíble perfume con notas dulces.");
-        r1.setProduct(p3);
+        Review r1 = new Review(p3, u1, Date.from(Instant.now()), "Increíble perfume con notas dulces.");
 
         reviewRepository.save(r1);
 

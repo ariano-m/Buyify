@@ -1,7 +1,8 @@
 package com.buyify;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -10,22 +11,38 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @Size(min = 2, max = 20)
+    @NotBlank(message = "Name may not be blank")
     private String name;
+
+    @Size(min = 2, max = 16)
+    @Column(unique = true)
+    @NotBlank(message = "Username may not be blank")
     private String username;
+
+    @Column(unique = true)
+    @NotBlank(message = "Email may not be blank")
     private String email;
+
+    @Size(min = 8, max = 32)
+    @NotBlank(message = "Password may not be blank")
     private String password;
+
+    @Column(unique = true)
     private String creditCard;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 
     protected User() {
     }
 
-    public User(String username, String email, String password) {
+    public User(String name, String username, String email, String password) {
+        this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;

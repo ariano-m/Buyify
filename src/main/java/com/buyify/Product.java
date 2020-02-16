@@ -1,9 +1,11 @@
 package com.buyify;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -11,14 +13,24 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotBlank(message = "Name may not be blank")
     private String name;
+
+    @NotBlank(message = "Category may not be blank")
     private String category;
+
+    @DecimalMin("0.01")
     private float price;
+
+    @Min(0)
+    @NotNull(message = "Stock may not be null")
     private int stock;
+
     private String description;
     private String url;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 
     @ManyToMany
@@ -116,7 +128,7 @@ public class Product {
     }
 
     public List<Review> getReviews() {
-    	return reviews;
+        return reviews;
     }
 
     public void setReviews(List<Review> reviews) {

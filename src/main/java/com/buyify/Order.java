@@ -1,7 +1,7 @@
 package com.buyify;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -11,6 +11,8 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @NotNull(message = "Date may not be null")
     private Date date;
 
     @ManyToOne

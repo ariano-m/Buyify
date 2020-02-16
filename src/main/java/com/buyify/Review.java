@@ -1,6 +1,8 @@
 package com.buyify;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -10,7 +12,10 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull(message = "Date may not be null")
     private Date date;
+
+    @Size(min = 10, max = 144)
     private String text;
 
     @ManyToOne
