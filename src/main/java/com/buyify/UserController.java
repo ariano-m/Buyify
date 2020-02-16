@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class ProfileUserController {
+public class UserController {
 	
 	@Autowired
 	private UserRepository userRepository;
@@ -27,9 +29,18 @@ public class ProfileUserController {
 		model.addAttribute("email", user.getEmail());
 		model.addAttribute("pedido", orders);
 		model.addAttribute("user", user);
-
-		
-		
+	
 		return "user_profile";
+	}
+	
+	@PostMapping("/nuevoUsuario")
+	public String registrarse(Model model, @RequestParam String name, @RequestParam String username, 
+			@RequestParam String password, @RequestParam String email) {
+		
+		User user = new User(name, username, email, password);
+		userRepository.save(user);
+		model.addAttribute("username", user.getUsername());
+		
+		return "registered";
 	}
 }
