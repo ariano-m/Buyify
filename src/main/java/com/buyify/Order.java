@@ -11,16 +11,19 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private long userId;
     private Date date;
-    @OneToMany
-    private List<Product> products = new ArrayList<>();
+
+    @ManyToOne
+    private User user;
+
+    @ManyToMany(mappedBy = "orders")
+    private List<Product> products;
 
     protected Order() {
     }
 
-    public Order(long userId, Date date, List<Product> products) {
-        this.userId = userId;
+    public Order(User user, Date date, List<Product> products) {
+        this.user = user;
         this.date = date;
         this.products = products;
     }
@@ -33,12 +36,12 @@ public class Order {
         this.id = id;
     }
 
-    public long getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Date getDate() {

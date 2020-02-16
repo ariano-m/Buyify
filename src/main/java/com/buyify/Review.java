@@ -13,7 +13,7 @@ public class Review {
     private Date date;
     private String text;
 
-    @OneToOne
+    @ManyToOne
     private User user;
 
     @ManyToOne

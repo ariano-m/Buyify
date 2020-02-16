@@ -21,6 +21,12 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<Review> reviews;
 
+    @ManyToMany
+    private List<Order> orders;
+
+    @ManyToOne
+    private Promotion promotion;
+
     protected Product() {
     }
 
@@ -88,7 +94,27 @@ public class Product {
     public void setUrl(String url) {
         this.url = url;
     }
-    
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public void setOrder(List<Order> order) {
+        this.orders = order;
+    }
+
+    public void addOrder(Order order) {
+        this.orders.add(order);
+    }
+
+    public void removeOrder(Order order) {
+        this.orders.remove(order);
+    }
+
     public List<Review> getReviews() {
     	return reviews;
     }
@@ -103,6 +129,14 @@ public class Product {
 
     public void removeReview(Review review) {
         reviews.remove(review);
+    }
+
+    public Promotion getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(Promotion promotion) {
+        this.promotion = promotion;
     }
 
 }

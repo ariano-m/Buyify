@@ -1,9 +1,7 @@
 package com.buyify;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Promotion {
@@ -13,6 +11,9 @@ public class Promotion {
     private long id;
     private long productId;
     private int promotion;
+
+    @OneToMany(mappedBy = "promotion")
+    private List<Product> products;
 
     protected Promotion() {
     }
@@ -44,6 +45,22 @@ public class Promotion {
 
     public void setPromotion(int promotion) {
         this.promotion = promotion;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    public void addProducts(Product product) {
+        this.products.add(product);
+    }
+
+    public void removeProducts(Product product) {
+        this.products.remove(product);
     }
 
 }

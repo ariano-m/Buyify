@@ -15,8 +15,12 @@ public class User {
     private String email;
     private String password;
     private String creditCard;
-    @OneToMany
-    private List<Order> orders = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
+
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
 
     protected User() {
     }
@@ -89,6 +93,22 @@ public class User {
 
     public void removeOrder(Order order) {
         this.orders.remove(order);
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
+    public void addReview(Review review) {
+        this.reviews.add(review);
+    }
+
+    public void removeReview(Review review) {
+        this.reviews.remove(review);
     }
 
 }
