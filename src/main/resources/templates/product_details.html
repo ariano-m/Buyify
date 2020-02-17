@@ -4,7 +4,7 @@
 
 <h2>{{product.name}}</h2>
 
-<table style="width:100%">
+<table style="width:70%">
     <tr>
         <td><img src="{{product.url}}" style="max-width: 500px;"></td>
 
@@ -22,7 +22,9 @@
 
 <h3>Reseñas</h3>
 {{#review}}
-<p>{{text}}</p>
+<h5>{{user.username}}</h5>
+<p>&nbsp;{{text}}</p>
+<br>
 {{/review}}
 <br>
 <br>
@@ -35,6 +37,10 @@
     <br>
     <input type='submit' value='Enviar'>
 </form>
+
+<br>
+<br>
+<a href="/productos">Ir a productos</a>
 
 </body>
 </html>
