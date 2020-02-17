@@ -39,7 +39,7 @@ public class ProductController {
     @GetMapping("/eliminar/{id}")
     public String deleteProduct(Model model, @PathVariable long id) {
     	productRepository.deleteById(id);
-    	model.addAttribute("products", productRepository.findAll());
+    	model.addAttribute("id", id);
     	return "product_deleted";
     }
 
