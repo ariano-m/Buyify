@@ -35,11 +35,8 @@ public class ShopController {
     @GetMapping("/productos/{id}")
     public String viewProduct(Model model, @PathVariable long id) {
         Optional<Product> product = productRepository.findById(id);
-        Optional<List<Review>> reviewList = product.map(Product::getReviews);
 
         model.addAttribute("product", product.get());
-        model.addAttribute("id", id);
-        model.addAttribute("review", reviewList.get());
 
         return "product_details";
     }

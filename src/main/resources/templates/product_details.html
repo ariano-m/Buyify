@@ -21,18 +21,18 @@
 <br>
 
 <h3>Reseñas</h3>
-{{#review}}
+{{#product.reviews}}
 <h5>{{user.username}}</h5>
 <p>&nbsp;{{text}}</p>
 <br>
-{{/review}}
+{{/product.reviews}}
 <br>
 <br>
 <h3>Escribir reseña sobre este producto</h3>
-<form action="/productos/{{id}}/nuevaReview" method="post">
+<form action="/productos/{{product.id}}/nuevaReview" method="post">
     <textarea minlength=10 name='reviewText' rows=5 cols=40></textarea>
     <input type='hidden' value={{product.id}} name='productId'>
-    <input type='hidden' value="{{id}}">
+    <input type='hidden' value="{{product.id}}">
     <br>
     <br>
     <input type='submit' value='Enviar'>

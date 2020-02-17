@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
+@Table(name="orders")
 public class Order {
 
     @Id
@@ -18,7 +19,7 @@ public class Order {
     @ManyToOne
     private User user;
 
-    @ManyToMany(mappedBy = "orders")
+    @ManyToMany
     private List<Product> products;
 
     protected Order() {

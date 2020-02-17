@@ -10,14 +10,12 @@
 <h4>Datos</h4>
 <br>&nbsp Email: {{user.email}}
 <br>&nbsp Pedidos:
-{{#user.orders.length}}
 {{#user.orders}}
 <h4>{{id}}</h4>
 {{#products}}
 <p>{{name}}</p>
 {{/products}}
 {{/user.orders}}
-{{/user.orders.length}}
 
 <br>
 <br>

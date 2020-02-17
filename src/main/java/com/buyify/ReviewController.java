@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.PostConstruct;
+import javax.persistence.PostLoad;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +32,7 @@ public class ReviewController {
 	
 	@Autowired
 	private ProductRepository productRepository;
-	
+		
 	@PostMapping("/productos/{id}/nuevaReview")
 	public String linkTowriteReview(Model model, @PathVariable long id, @RequestParam String reviewText, @RequestParam Long productId) {
 		List<User> users = userRepository.findAll();
