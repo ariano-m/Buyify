@@ -1,10 +1,7 @@
 package com.buyify;
 
 import javax.persistence.*;
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.util.List;
 
 @Entity
@@ -14,9 +11,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Size(min = 2, max = 50)
     @NotBlank(message = "Name may not be blank")
     private String name;
 
+    @Size(min = 2, max = 25)
     @NotBlank(message = "Category may not be blank")
     private String category;
 

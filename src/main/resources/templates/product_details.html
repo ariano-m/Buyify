@@ -5,15 +5,15 @@
 <h2>{{product.name}}</h2>
 
 <table style="width:100%">
-  <tr>
-    <td><img src="{{product.url}}" style="max-width: 500px;"></td>
-    
-    <td style="text-align:justify">
-    <br>Precio: {{product.price}}€
-    <br>Stock: {{product.stock}} unidades
-    <br>Descripción: {{product.description}}
-    </td>
-  </tr>
+    <tr>
+        <td><img src="{{product.url}}" style="max-width: 500px;"></td>
+
+        <td style="text-align:justify">
+            <br>Precio: {{product.price}}€
+            <br>Stock: {{product.stock}} unidades
+            <br>Descripción: {{product.description}}
+        </td>
+    </tr>
 </table>
 
 <button type="button">Añadir al carrito</button>
@@ -21,19 +21,19 @@
 <br>
 
 <h3>Reseñas</h3>
-    {{#review}}
-        <p>{{text}}</p>
-    {{/review}}
+{{#review}}
+<p>{{text}}</p>
+{{/review}}
 <br>
 <br>
 <h3>Escribir reseña sobre este producto</h3>
 <form action="/productos/{{id}}/nuevaReview" method="post">
-	<textarea minlength=10 name='reviewText' rows=5 cols=40></textarea>
-	<input type='hidden' value={{product.id}} name='productId'>
-	<input type='hidden' value="{{id}}">
-	<br>
-	<br>
-	<input type='submit' value='Enviar'>
+    <textarea minlength=10 name='reviewText' rows=5 cols=40></textarea>
+    <input type='hidden' value={{product.id}} name='productId'>
+    <input type='hidden' value="{{id}}">
+    <br>
+    <br>
+    <input type='submit' value='Enviar'>
 </form>
 
 </body>

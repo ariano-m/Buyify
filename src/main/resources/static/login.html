@@ -6,15 +6,15 @@
 
 <h2>Login</h2>
 
- <form action="/user/login" method="post">
-  <label for="name">Nombre de usuario:</label>
-  <input id="name" name="name" type="text"><br><br>
+<form action="/user/login" method="post">
+    <label for="name">Nombre de usuario:</label>
+    <input minlength=2 id="name" name="name" type="text"><br><br>
 
-  <label for="pwd">Contraseña:</label>
-  <input type="password" id="pwd" name="pwd"><br><br>
-  
-  <input type="submit" value="Login">
- </form>
+    <label for="pwd">Contraseña:</label>
+    <input minlength=8 type="password" id="pwd" name="pwd"><br><br>
+
+    <input type="submit" value="Login">
+</form>
 
 </body>
 </html>
