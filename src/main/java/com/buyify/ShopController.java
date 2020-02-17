@@ -27,7 +27,7 @@ public class ShopController {
     public String shop(Model model) {
         List<Product> products = productRepository.findAll();
 
-        Map<Product, Promotion> map = new HashMap<>();
+        Map<Product, Promotion> map = new TreeMap<>(Comparator.comparing(Product::getName));
         for (Product product : products) {
             map.put(product, promotionRepository.findByProductId(product.getId()));
         }
