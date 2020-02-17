@@ -9,13 +9,13 @@
   &nbsp;
 
   <tr>
-    {{#product}}
-    <td><a href="/productos/{{id}}" style="text-align: center;"><img src="{{url}}" style="max-width: 35%;">
-    <br>{{name}}
-      <br>{{price}}€
-<!--      <br>{{#promotion}}{{promotion}}% descuento{{/promotion}}-->
+    {{#entrySet}}
+    <td><a href="/productos/{{key.id}}" style="text-align: center;"><img src="{{key.url}}" style="max-width: 35%;">
+    <br>{{key.name}}
+      <br>{{key.price}}€
+      <br>{{#value}}{{value.promotion}}% descuento{{/value}}
     </a></td>
-    {{/product}}
+    {{/entrySet}}
   </tr>
 </table>
 

@@ -6,11 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Stream;
+import java.util.*;
 
 @Controller
 public class ShopController {
@@ -20,17 +16,25 @@ public class ShopController {
 
     @Autowired
     private PromotionRepository promotionRepository;
-    
+
     @Autowired
     private ReviewRepository reviewRepository;
-    
+
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping("/productos")
     public String shop(Model model) {
         List<Product> products = productRepository.findAll();
-        model.addAttribute("product", products);
+
+        Map<Product, Promotion> map = new HashMap<>();
+        for (Product product : products) {
+            map.put(product, promotionRepository.findByProductId(product.getId()));
+        }
+
+        Set<Map.Entry<Product, Promotion>> entrySet = map.entrySet();
+
+        model.addAttribute("entrySet", entrySet);
 
         return "shop";
     }
