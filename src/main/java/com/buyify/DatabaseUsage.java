@@ -27,10 +27,6 @@ public class DatabaseUsage implements CommandLineRunner {
     
     @Autowired
     private OrderRepository orderRepository;
-    
-
-    @Autowired
-    private PromotionRepository promotionRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -46,7 +42,6 @@ public class DatabaseUsage implements CommandLineRunner {
     	userRepository.save(u3);
     	userRepository.save(u4);
     	userRepository.save(u5);
-    	
     	
     	
 		Product p1 = new Product("Solán de Cabras", "alimentación", 1.2F, 5,
@@ -73,22 +68,12 @@ public class DatabaseUsage implements CommandLineRunner {
                 "Color amarillo verdoso pálido con destellos alimonados, brillante, limpio y cristalino. Aromas de intensidad media con claras notas minerales.",
                 "https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/201909/24/00118775700711____2__600x600.jpg");
         
-        
-    	Promotion pro1 = new Promotion(20);
-    	Promotion pro2 = new Promotion(20);
-    	    	
-    	p1.setPromotion(pro1);
-    	p2.setPromotion(pro2);
-    	
-    	promotionRepository.save(pro1);
-    	promotionRepository.save(pro2);
-    	
-        
 		productRepository.save(p1);
 		productRepository.save(p2);
 		productRepository.save(p3);
 		productRepository.save(p4);
     	productRepository.save(p5);
+        productRepository.save(p6);
     	
     	
 		LocalDate localDate = java.time.LocalDate.now();
@@ -105,6 +90,7 @@ public class DatabaseUsage implements CommandLineRunner {
         reviewRepository.save(r3);
         reviewRepository.save(r4);
         reviewRepository.save(r5);
+
     	
 		List<Product> l1 = new ArrayList<>();
 		l1.add(p1);
@@ -123,7 +109,6 @@ public class DatabaseUsage implements CommandLineRunner {
 		Order o3 = new Order(u4, date, l3);
 		Order o4 = new Order(u3, date, l3);
 		
-		
 		orderRepository.save(o1);
 		orderRepository.save(o2);
 		orderRepository.save(o3);
@@ -132,6 +117,7 @@ public class DatabaseUsage implements CommandLineRunner {
 
         Promotion pr1 = new Promotion(20);
         pr1.setProduct(p3);
+
         promotionRepository.save(pr1);
 
         List<Product> query = productRepository.findAll();
