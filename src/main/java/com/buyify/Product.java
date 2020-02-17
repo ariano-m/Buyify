@@ -35,9 +35,6 @@ public class Product {
     @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
     private List<Order> orders;
 
-    @ManyToOne
-    private Promotion promotion;
-
     protected Product() {
     }
 
@@ -140,14 +137,6 @@ public class Product {
 
     public void removeReview(Review review) {
         reviews.remove(review);
-    }
-
-    public Promotion getPromotion() {
-        return promotion;
-    }
-
-    public void setPromotion(Promotion promotion) {
-        this.promotion = promotion;
     }
 
 }
