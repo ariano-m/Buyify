@@ -5,7 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
 import java.sql.Date;
-import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -119,6 +118,7 @@ public class DatabaseUsage implements CommandLineRunner {
         pr1.setProduct(p3);
 
         promotionRepository.save(pr1);
+
 
         List<Product> query = productRepository.findAll();
         for (Product p : query) {

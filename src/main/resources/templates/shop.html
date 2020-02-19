@@ -29,17 +29,17 @@
 <br>
 
 <table style="width:50%">
-    {{#entrySet}}
+    {{#products}}
     <tr>
-        <td><a href="/productos/{{key.id}}" style="text-align: center;"><img src="{{key.url}}" style="max-width: 35%;"></a></td>
+        <td><a href="/productos/{{id}}" style="text-align: center;"><img src="{{url}}" style="max-width: 35%;"></a></td>
 
-        <td><a href="/productos/{{key.id}}" style="text-align: left;">
-            <br>{{key.name}}
-            <br>{{key.price}}€
-            <br>{{#value}}{{value.promotion}}% descuento{{/value}}
+        <td><a href="/productos/{{id}}" style="text-align: left;">
+            <br>{{name}}
+            <br>{{price}}€
+            <br>{{#promotion}}{{promotion}}% descuento{{/promotion}}
         </a></td>
     </tr>
-    {{/entrySet}}
+    {{/products}}
 </table>
 
 </body>
