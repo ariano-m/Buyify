@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -73,6 +74,16 @@ public class ProductController {
         productRepository.deleteById(id);
         model.addAttribute("id", id);
         return "product_deleted";
+    }
+    
+    @GetMapping("/upload_product.html")
+    public String formNewProduct(Model model) {
+    	List<Category> categories = new ArrayList<>();
+    	for(Category category : Category.values()) {
+    		categories.add(category);
+    	}
+    	model.addAttribute("categories",categories);
+    	return "upload_product";
     }
 
 }
