@@ -50,7 +50,7 @@ public class ProductController {
     }
 
     @PostMapping("/productos/nuevoProducto")
-    public String createProduct(Model model, @RequestParam String name, @RequestParam int price, @RequestParam int promotion,
+    public String createProduct(Model model, @RequestParam String name, @RequestParam float price, @RequestParam int promotion,
                                 @RequestParam int stock, @RequestParam String category,
                                 @RequestParam String url, @RequestParam String description) {
 
