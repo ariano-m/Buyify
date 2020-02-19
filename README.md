@@ -1,10 +1,10 @@
 # Buyify
 
-Web de compra en la que se podrán realizar acciones propias de una tienda online tales como visualizar los productos, registrarse como usuario, añadir al carrito de la compra, realizar pedidos, ver el historial de pedidos, generar facturas, etc.
+Web de compra en la que se podrán realizar acciones propias de una tienda online tales como visualizar los productos, registrarse como usuario, realizar pedidos, ver el historial de pedidos, generar facturas, etc.
 
 Constará de una parte pública que permitirá a todos los usuarios navegar por la tienda, iniciar sesión, registrarse y añadir productos al carrito de compra.
 
-Respecto a la parte privada los usuarios podrán comprar, ver los pedidos realizados, generar las facturas, cerrar sesión y añadir productos a su lista de deseos.
+Respecto a la parte privada los usuarios podrán comprar, ver los pedidos realizados, generar las facturas y cerrar sesión.
 
 Distinguimos tres tipos de usuarios:
 
@@ -28,6 +28,28 @@ Distinguimos tres tipos de usuarios:
 ## Funcionalidades servicio interno
 * Enviar mails
 * Reescalar imágenes en determinadas acciones (añadir producto)
+
+## Modelo E/R
+<img src="/docs/modeloER.png" alt="drawing" width="750"/>
+ 	
+## Diagrama de clases
+<img src="/docs/diagramaClases.png" alt="drawing" width="1000"/>
+
+## Páginas principales
+<img src="/docs/screens/login.png" alt="drawing" width="400"/>
+Login: página de inicio de sesión para los usuarios
+
+<img src="/docs/screens/productos.png" alt="drawing" width="500"/>
+Productos: página principal de la actividad de la web
+
+<img src="/docs/screens/productos-id.png" alt="drawing" width="500"/>
+Vista producto: página donde se visualizan los detalles de un producto
+
+<img src="/docs/screens/profile.png" alt="drawing" width="350"/>
+Perfil: página de perfil de usuario
+
+## Diagrama de flujo
+<img src="/docs/flujoNavegacion.svg" alt="drawing" width="1000"/>
 
 Nombre | Correo | Usuario
 ------ | ------ | -------
