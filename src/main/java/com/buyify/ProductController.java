@@ -24,13 +24,19 @@ public class ProductController {
     private ReviewRepository reviewRepository;
 
     @PostMapping("/productos/nuevoProducto")
-    public String createProduct(Model model, @RequestParam String name, @RequestParam int price,
+    public String createProduct(Model model, @RequestParam String name, @RequestParam int price, @RequestParam int promotion,
                                 @RequestParam int stock, @RequestParam String category,
                                 @RequestParam String url, @RequestParam String description) {
 
         Product newProduct = new Product(name, category, price, stock, description, url);
         productRepository.save(newProduct);
+        if(promotion > 0) {
+        	Promotion newPromotion = new Promotion(promotion);
+        	newPromotion.setProduct(newProduct);
+        	promotionRepository.save(newPromotion);
+        }
 
+        
         model.addAttribute("id", newProduct.getId());
 
         return "product_added";
