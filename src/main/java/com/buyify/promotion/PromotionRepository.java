@@ -1,4 +1,4 @@
-package com.buyify;
+package com.buyify.promotion;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

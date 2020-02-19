@@ -1,10 +1,11 @@
-package com.buyify;
+package com.buyify.promotion;
+
+import com.buyify.product.Product;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity
 public class Promotion {

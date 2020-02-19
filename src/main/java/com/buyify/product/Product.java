@@ -1,4 +1,8 @@
-package com.buyify;
+package com.buyify.product;
+
+import com.buyify.order.Order;
+import com.buyify.promotion.Promotion;
+import com.buyify.review.Review;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

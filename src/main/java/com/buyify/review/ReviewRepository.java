@@ -1,9 +1,6 @@
-package com.buyify;
-
-import java.util.List;
+package com.buyify.review;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ReviewRepository extends JpaRepository<Review, Long> {
 }
-

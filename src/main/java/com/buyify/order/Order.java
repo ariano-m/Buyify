@@ -1,4 +1,7 @@
-package com.buyify;
+package com.buyify.order;
+
+import com.buyify.product.Product;
+import com.buyify.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -6,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name="orders")
+@Table(name = "orders")
 public class Order {
 
     @Id

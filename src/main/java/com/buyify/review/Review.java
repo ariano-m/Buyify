@@ -1,4 +1,7 @@
-package com.buyify;
+package com.buyify.review;
+
+import com.buyify.product.Product;
+import com.buyify.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
