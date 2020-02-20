@@ -11,8 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 public class Order {
-
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
@@ -73,5 +72,10 @@ public class Order {
     public void removeProduct(Product product) {
         this.products.remove(product);
     }
+    
+    @Override
+	public String toString() {
+		return "Order [date=" + date + ", user=" + user.getName() + ", products=" + products + "]";
+	}
 
 }
