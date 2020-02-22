@@ -29,13 +29,13 @@ public class ReviewController {
     private ProductRepository productRepository;
 
     @PostMapping("/productos/{id}/nuevaReview")
-    public String linkTowriteReview(Model model, @PathVariable long id, @RequestParam String reviewText, @RequestParam Long productId) {
+    public String linkTowriteReview(Model model, @PathVariable long id, @RequestParam String reviewText) {
         List<User> users = userRepository.findAll();
         User user = users.get(0);//Prueba
         LocalDate localDate = java.time.LocalDate.now();
         Date date = java.sql.Date.valueOf(localDate);
 
-        Optional<Product> producto = productRepository.findById(productId);
+        Optional<Product> producto = productRepository.findById(id);
 
         Review review = new Review(producto.get(), user, date, reviewText);
         reviewRepository.save(review);

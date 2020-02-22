@@ -34,8 +34,6 @@
 <h3>Escribir reseña sobre este producto</h3>
 <form action="/productos/{{product.id}}/nuevaReview" method="post">
     <textarea minlength=10 name='reviewText' rows=5 cols=40></textarea>
-    <input type='hidden' value={{product.id}} name='productId'>
-    <input type='hidden' value="{{product.id}}">
     <br>
     <br>
     <input type='submit' value='Enviar'>
