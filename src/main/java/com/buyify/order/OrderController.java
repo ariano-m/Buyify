@@ -42,17 +42,16 @@ public class OrderController {
 		User user = users.get(0);//Prueba
 	    LocalDate localDate = java.time.LocalDate.now();
 	    Date date = java.sql.Date.valueOf(localDate);
-		List<Product> order_list = new ArrayList<>();
-		Product p = null;
-		Order order = null;
-		for(int i = 0; i < productNames.length;i++) {
-			p = productRepository.findByName(productNames[i]);
-			order_list.add(p);
+
+		List<Product> products = new ArrayList<>();
+		for (String productName : productNames) {
+			Product product = productRepository.findByName(productName);
+			products.add(product);
 		}
 		
-		order = new Order(user,date,order_list);
-		
+		Order order = new Order(user, date, products);
 		orderRepository.save(order);
-        return "redirect:/productos";
+
+        return "redirect:/profile";
     }
 }

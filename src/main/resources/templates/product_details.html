@@ -16,9 +16,24 @@
         </td>
     </tr>
 </table>
+<br>
+<br>
 
-<button type="button">Añadir al carrito</button>
-<button type="button" onclick="location.href='/eliminar/{{product.id}}'">Eliminar Producto</button>
+<table style="width:15%">
+    <tr>
+        <td>
+            <form action="/realizado" method="post">
+                <input type="hidden" name="product_list" value="{{product.name}}">
+                <input type="submit" value="Comprar ahora">
+            </form>
+        </td>
+
+        <td>
+            <button type="button" onclick="location.href='/eliminar/{{product.id}}'">Eliminar Producto</button>
+        </td>
+    </tr>
+</table>
+
 
 <br>
 <br>
