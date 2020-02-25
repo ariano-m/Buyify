@@ -23,6 +23,11 @@ public class ProductController {
     @Autowired
     private PromotionRepository promotionRepository;
 
+    @GetMapping("/")
+    public String redirectRoot() {
+        return "redirect:/productos";
+    }
+
     @GetMapping("/productos")
     public String shop(Model model) {
         List<Product> products = productRepository.findAll();
