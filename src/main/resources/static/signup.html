@@ -19,6 +19,8 @@
     <label for="password">Contraseña</label>
     <input minlength=8 id="password" name="password" type="password"><br><br>
 
+    <input type="hidden" name="_csrf" value="{{token}}"/>
+
     <input type="submit" value="Registrarse">
 </form>
 

@@ -29,6 +29,9 @@
         <td>
         	<form action="/busqueda" method="POST">
         		<input type="search" name="name" placeholder="Buscar" minlength="2">
+
+                <input type="hidden" name="_csrf" value="{{token}}"/>
+
         		<input type="submit" name="submit" value="buscar">
         	</form>
         </td>

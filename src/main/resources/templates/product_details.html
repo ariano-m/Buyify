@@ -25,6 +25,8 @@
             <form action="/realizado" method="post">
                 <input type="hidden" name="product_list" value="{{product.name}}">
                 <input type="submit" value="Comprar ahora">
+
+                <input type="hidden" name="_csrf" value="{{token}}"/>
             </form>
         </td>
 
@@ -51,6 +53,7 @@
     <textarea minlength=10 name='reviewText' rows=5 cols=40></textarea>
     <br>
     <br>
+    <input type="hidden" name="_csrf" value="{{token}}"/>
     <input type='submit' value='Enviar'>
 </form>
 
