@@ -25,7 +25,7 @@ public class ProductController {
 
     @GetMapping("/")
     public String redirectRoot() {
-        return "redirect:/productos";
+        return "forward:/productos";
     }
 
     @GetMapping("/productos")
