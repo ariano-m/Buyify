@@ -6,10 +6,14 @@ import com.buyify.review.Review;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class User {
+	
+	//List<String> roles = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,7 +45,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Review> reviews;
 
-    protected User() {
+	protected User() {
     }
 
     public User(String name, String username, String email, String password) {
@@ -49,6 +53,7 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+        //roles.add("USER");
     }
 
     public long getId() {
@@ -130,5 +135,13 @@ public class User {
     public void removeReview(Review review) {
         this.reviews.remove(review);
     }
+    
+//    public List<String> getRoles() {
+//		return roles;
+//	}
+//
+//	public void setRoles(List<String> roles) {
+//		this.roles = roles;
+//	}
 
 }
