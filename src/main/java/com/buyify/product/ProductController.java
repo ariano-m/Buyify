@@ -80,4 +80,9 @@ public class ProductController {
         return "product_deleted";
     }
 
+    @GetMapping("/upload_product")
+    public String createProductView() {
+        return "upload_product";
+    }
+
 }

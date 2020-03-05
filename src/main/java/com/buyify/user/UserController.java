@@ -23,11 +23,11 @@ public class UserController {
         model.addAttribute("user", user);
         return "user_profile";
     }
-    
-    @PostMapping("/signup")
-    	public String signup() {
-    		return "signup";
-    	}
+
+    @GetMapping("/signup")
+    public String registerView() {
+        return "signup";
+    }
 
     @PostMapping("/nuevoUsuario")
     public String registrarse(Model model, @RequestParam String name, @RequestParam String username,
