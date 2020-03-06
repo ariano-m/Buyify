@@ -40,17 +40,19 @@ public class DatabaseUsage implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        User u1 = new User("Bustamante", "bustamante_", "liz@sen.ma.gov", "12345678");
-        User u2 = new User("Pepe", "pepe28", "pepe@gmail.com", "12345678");
-        User u3 = new User("Juan", "juan98", "juan98@gmail.com", "12345678");
-        User u4 = new User("Santiago", "santi_ago", "santi00@outlook.es", "12345678");
-        User u5 = new User("Fernando", "alonso12", "alonso12@gmail.es", "12345678");
+        User u1 = new User("Bustamante", "bustamante_", "liz@sen.ma.gov", "12345678", "USER");
+        User u2 = new User("Pepe", "pepe28", "pepe@gmail.com", "12345678", "USER");
+        User u3 = new User("Juan", "juan98", "juan98@gmail.com", "12345678", "USER");
+        User u4 = new User("Santiago", "santi_ago", "santi00@outlook.es", "12345678", "USER");
+        User u5 = new User("Fernando", "alonso12", "alonso12@gmail.es", "12345678", "USER");
+        User admin = new User("Admin", "admin", "admin1@gmail.com", "admin123", "USER", "ADMIN");
 
         userRepository.save(u1);
         userRepository.save(u2);
         userRepository.save(u3);
         userRepository.save(u4);
         userRepository.save(u5);
+        userRepository.save(admin);
 
 
         Product p1 = new Product("Solán de Cabras", "alimentación", 1.2F, 5,
@@ -143,6 +145,11 @@ public class DatabaseUsage implements CommandLineRunner {
         List<Promotion> query3 = promotionRepository.findAll();
         for (Promotion r : query3) {
             System.out.println("PROMOTION= " + "producto: " + r.getProduct().getName() + " | " + r.getPromotion());
+        }
+
+        List<User> query4 = userRepository.findAll();
+        for (User u : query4) {
+            System.out.println("Usuario= " + u.getUsername() + " ROLES:" + u.getRoles().toString());
         }
     }
 }

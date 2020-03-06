@@ -2,18 +2,26 @@ package com.buyify.user;
 
 import com.buyify.order.Order;
 import com.buyify.review.Review;
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
 public class User {
-	
-	//List<String> roles = new ArrayList<>();
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -32,12 +40,14 @@ public class User {
     @NotBlank(message = "Email may not be blank")
     private String email;
 
-    @Size(min = 8, max = 32)
+    @Size(min = 60, max = 128)
+    @Column
     @NotBlank(message = "Password may not be blank")
     private String password;
 
     @Column(unique = true)
     private String creditCard;
+
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Order> orders;
@@ -48,12 +58,13 @@ public class User {
 	protected User() {
     }
 
-    public User(String name, String username, String email, String password) {
+    public User(String name, String username, String email, String password, String... roles) {
         this.name = name;
         this.username = username;
         this.email = email;
-        this.password = password;
-        //roles.add("USER");
+        this.password = new BCryptPasswordEncoder().encode(password);
+        System.out.println(this.password);
+        this.roles = new ArrayList<>(Arrays.asList(roles));
     }
 
     public long getId() {
@@ -135,13 +146,14 @@ public class User {
     public void removeReview(Review review) {
         this.reviews.remove(review);
     }
-    
-//    public List<String> getRoles() {
-//		return roles;
-//	}
-//
-//	public void setRoles(List<String> roles) {
-//		this.roles = roles;
-//	}
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
 
 }
