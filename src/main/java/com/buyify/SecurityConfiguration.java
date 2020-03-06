@@ -46,9 +46,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         // Login form
         http.formLogin().defaultSuccessUrl("/productos");
 
+
         // Logout
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/productos");
+
     }
 
     @Override

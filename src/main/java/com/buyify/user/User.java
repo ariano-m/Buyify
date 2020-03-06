@@ -3,6 +3,8 @@ package com.buyify.user;
 import com.buyify.order.Order;
 import com.buyify.review.Review;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.TypeDef;
+import org.hibernate.annotations.TypeDefs;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -41,7 +43,6 @@ public class User {
     private String email;
 
     @Size(min = 60, max = 128)
-    @Column
     @NotBlank(message = "Password may not be blank")
     private String password;
 

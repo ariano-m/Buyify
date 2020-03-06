@@ -37,14 +37,10 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
         if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
             throw new BadCredentialsException("Something was wrong");
         }
-//        if (password != user.getPassword()) {
-//            throw new BadCredentialsException("Something was wrong");
-//        }
-
 
         List<GrantedAuthority> roles = new ArrayList<>();
         for (String role : user.getRoles()) {
-            roles.add(new SimpleGrantedAuthority(role));
+            roles.add(new SimpleGrantedAuthority("ROLE_" + role));
         }
 
         return new UsernamePasswordAuthenticationToken(user.getUsername(), password, roles);
