@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
 <h2><a href="/productos">Productos</a></h2>
@@ -11,13 +12,7 @@
         </td>
 
         <td style="text-align:justify">
-<!--            <form action="/signup" method="POST">-->
-<!--                <input type="hidden" name="_csrf" value="{{token}}"/>-->
-
-<!--        		<input type="submit" name="submit" value="Registrarse">-->
-<!--        	</form>-->
-           <a href="/signup">Registrarse</a>
-
+            <a href="/signup">Registrarse</a>
         </td>
 
         <td style="text-align:justify">
@@ -27,19 +22,19 @@
         <td style="text-align:justify">
             <a href="/upload_product">Nuevo producto</a>
         </td>
-        
+
         <td style="text-align:justify">
             <a href="/new_order">Realizar un pedido</a>
         </td>
-        
+
         <td>
-        	<form action="/busqueda" method="POST">
-        		<input type="search" name="name" placeholder="Buscar" minlength="2">
+            <form action="/busqueda" method="POST">
+                <input type="search" name="name" placeholder="Buscar" minlength="2">
 
                 <input type="hidden" name="_csrf" value="{{token}}"/>
 
-        		<input type="submit" name="submit" value="buscar">
-        	</form>
+                <input type="submit" name="submit" value="buscar">
+            </form>
         </td>
     </tr>
 </table>
