@@ -2,6 +2,7 @@ package com.buyify;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.buyify.user.User;
 import com.buyify.user.UserRepository;
@@ -24,26 +25,25 @@ public class UserRepositoryAuthenticationProvider implements AuthenticationProvi
 
     @Override
     public Authentication authenticate(Authentication auth) throws AuthenticationException {
+        Optional<User> user = userRepository.findByUsername(auth.getName());
 
-        User user = userRepository.findByUsername(auth.getName());
-
-        if (user == null) {
+        if (!user.isPresent()) {
             throw new BadCredentialsException("Something was wrong");
         }
 
         String password = (String) auth.getCredentials();
-        System.out.println(user.getPassword());
+        System.out.println(user.get().getPassword());
         System.out.println(password);
-        if (!new BCryptPasswordEncoder().matches(password, user.getPassword())) {
+        if (!new BCryptPasswordEncoder().matches(password, user.get().getPassword())) {
             throw new BadCredentialsException("Something was wrong");
         }
 
         List<GrantedAuthority> roles = new ArrayList<>();
-        for (String role : user.getRoles()) {
+        for (String role : user.get().getRoles()) {
             roles.add(new SimpleGrantedAuthority("ROLE_" + role));
         }
 
-        return new UsernamePasswordAuthenticationToken(user.getUsername(), password, roles);
+        return new UsernamePasswordAuthenticationToken(user.get().getUsername(), password, roles);
     }
 
     @Override

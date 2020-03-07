@@ -1,12 +1,13 @@
 package com.buyify.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.authentication.AuthenticationProvider;
 
-public interface UserRepository extends JpaRepository<User, Long>{
+import java.util.Optional;
 
-    User findByUsername(String username);
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    User findByName(String name);
+    Optional<User> findByUsername(String username);
+
+    Optional<User> findByName(String name);
 
 }
