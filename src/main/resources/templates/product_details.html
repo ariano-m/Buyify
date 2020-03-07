@@ -30,9 +30,11 @@
             </form>
         </td>
 
+        {{#admin}}
         <td>
             <button type="button" onclick="location.href='/eliminar/{{product.id}}'">Eliminar Producto</button>
         </td>
+        {{/admin}}
     </tr>
 </table>
 
@@ -48,6 +50,8 @@
 {{/product.reviews}}
 <br>
 <br>
+
+{{#logged}}
 <h3>Escribir reseña sobre este producto</h3>
 <form action="/productos/{{product.id}}/nuevaReview" method="post">
     <textarea minlength=10 name='reviewText' rows=5 cols=40></textarea>
@@ -56,6 +60,7 @@
     <input type="hidden" name="_csrf" value="{{token}}"/>
     <input type='submit' value='Enviar'>
 </form>
+{{/logged}}
 
 <br>
 <br>

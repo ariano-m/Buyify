@@ -42,9 +42,10 @@ public class ProductController {
     }
 
     @GetMapping("/productos/{id}")
-    public String viewProduct(Model model, @PathVariable long id) {
+    public String viewProduct(Model model, @PathVariable long id,  HttpServletRequest request) {
         Optional<Product> product = productRepository.findById(id);
-
+        model.addAttribute("admin", request.isUserInRole("ADMIN"));
+        model.addAttribute("logged", request.getUserPrincipal() != null);
         model.addAttribute("product", product.get());
 
         return "product_details";
@@ -80,6 +81,7 @@ public class ProductController {
     public String deleteProduct(Model model, @PathVariable long id) {
         productRepository.deleteById(id);
         model.addAttribute("id", id);
+
         return "product_deleted";
     }
 
