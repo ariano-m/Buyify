@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -29,11 +30,13 @@ public class ProductController {
     }
 
     @GetMapping("/productos")
-    public String shop(Model model) {
+    public String shop(Model model, HttpServletRequest request) {
         List<Product> products = productRepository.findAll();
         products.sort(Comparator.comparing(Product::getName));
 
         model.addAttribute("products", products);
+        model.addAttribute("admin", request.isUserInRole("ADMIN"));
+        model.addAttribute("logged", request.getUserPrincipal() == null);
 
         return "shop";
     }

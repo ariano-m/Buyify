@@ -43,9 +43,8 @@ public class OrderController {
     }
 
     @PostMapping("/realizado")
-    public RedirectView order(@RequestParam(name = "product_list") String[] productNames) {
-        List<User> users = userRepository.findAll();
-        User user = users.get(0);//Prueba
+    public RedirectView order(@RequestParam(name = "product_list") String[] productNames, HttpServletRequest request) {
+        User user = userRepository.findByUsername(request.getUserPrincipal().getName()).get();
         LocalDate localDate = java.time.LocalDate.now();
         Date date = java.sql.Date.valueOf(localDate);
 

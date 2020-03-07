@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
@@ -29,9 +30,8 @@ public class ReviewController {
     private ProductRepository productRepository;
 
     @PostMapping("/productos/{id}/nuevaReview")
-    public String linkTowriteReview(Model model, @PathVariable long id, @RequestParam String reviewText) {
-        List<User> users = userRepository.findAll();
-        User user = users.get(0);//Prueba
+    public String linkTowriteReview(Model model, @PathVariable long id, @RequestParam String reviewText, HttpServletRequest request) {
+        User user = userRepository.findByUsername(request.getUserPrincipal().getName()).get();
         LocalDate localDate = java.time.LocalDate.now();
         Date date = java.sql.Date.valueOf(localDate);
 

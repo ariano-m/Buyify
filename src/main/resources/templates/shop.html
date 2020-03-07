@@ -7,6 +7,7 @@
 
 <table style="width:40%">
     <tr>
+        {{#logged}}
         <td style="text-align:justify">
             <a href="/login">Login</a>
         </td>
@@ -14,14 +15,18 @@
         <td style="text-align:justify">
             <a href="/signup">Registrarse</a>
         </td>
+        {{/logged}}
+
 
         <td style="text-align:justify">
             <a href="/profile">Perfil</a>
         </td>
 
+        {{#admin}}
         <td style="text-align:justify">
             <a href="/upload_product">Nuevo producto</a>
         </td>
+        {{/admin}}
 
         <td style="text-align:justify">
             <a href="/new_order">Realizar un pedido</a>
