@@ -35,6 +35,9 @@ Distinguimos tres tipos de usuarios:
 ## Diagrama de clases
 <img src="/docs/diagramaClases.png" alt="drawing" width="1000"/>
 
+## Diagrama de clases y templates
+<img src="/docs/DiagramaClasesTemplates.png" alt="drawing" width="1000"/>
+
 ## Páginas principales
 <img src="/docs/screens/login.png" alt="drawing" width="400"/>
 Login: página de inicio de sesión para los usuarios
@@ -49,7 +52,7 @@ Vista producto: página donde se visualizan los detalles de un producto
 Perfil: página de perfil de usuario
 
 ## Diagrama de flujo
-<img src="/docs/flujoNavegacion.svg" alt="drawing" width="1000"/>
+<img src="/docs/FlujoNavegacion.svg" alt="drawing" width="1000"/>
 
 Nombre | Correo | Usuario
 ------ | ------ | -------
