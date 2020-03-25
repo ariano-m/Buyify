@@ -42,7 +42,6 @@ public class User {
     @NotBlank(message = "Email may not be blank")
     private String email;
 
-    @Size(min = 60, max = 128)
     @NotBlank(message = "Password may not be blank")
     private String password;
 
