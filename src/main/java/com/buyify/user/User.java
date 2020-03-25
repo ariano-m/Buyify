@@ -64,7 +64,6 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = new BCryptPasswordEncoder().encode(password);
-        System.out.println(this.password);
         this.roles = new ArrayList<>(Arrays.asList(roles));
     }
 
