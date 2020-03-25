@@ -58,11 +58,7 @@ public class OrderController {
         orderRepository.save(order);
         
         RestTemplate restTemplate = new RestTemplate();
-        HttpHeaders headers = new HttpHeaders();
-        headers.setAccept(Collections.singletonList(MediaType.APPLICATION_OCTET_STREAM));
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-        
-        restTemplate.exchange("http://localhost:9999/realizado/" + order.getId(), HttpMethod.GET, entity, boolean.class);
+        restTemplate.exchange("http://localhost:9999/realizado/" + order.getId(), HttpMethod.GET, null, Void.class);
 
         RedirectView redirectView = new RedirectView("profile");
         redirectView.setExposeModelAttributes(false);
