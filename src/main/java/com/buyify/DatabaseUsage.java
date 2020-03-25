@@ -45,6 +45,7 @@ public class DatabaseUsage implements CommandLineRunner {
 //        User u3 = new User("Juan", "juan98", "juan98@gmail.com", "12345678", "USER");
 //        User u4 = new User("Santiago", "santi_ago", "santi00@outlook.es", "12345678", "USER");
 //        User u5 = new User("Fernando", "alonso12", "alonso12@gmail.es", "12345678", "USER");
+//        User u6 = new User("computadora64", "c0mputer64", "a.riano.2016@alumnos.urjc.es", "12345678", "USER");
 //        User admin = new User("Admin", "admin", "admin1@gmail.com", "admin123", "USER", "ADMIN");
 //
 //        userRepository.save(u1);
@@ -52,6 +53,7 @@ public class DatabaseUsage implements CommandLineRunner {
 //        userRepository.save(u3);
 //        userRepository.save(u4);
 //        userRepository.save(u5);
+//        userRepository.save(u6);
 //        userRepository.save(admin);
 //
 //
@@ -95,12 +97,14 @@ public class DatabaseUsage implements CommandLineRunner {
 //        Review r3 = new Review(p3, u3, date, "Cumple su funcion");
 //        Review r4 = new Review(p4, u4, date, "Cumple su funcion");
 //        Review r5 = new Review(p5, u5, date, "Cumple su funcion");
+//        Review r6 = new Review(p3, u6, date, "Huele muy bien. Lo utilizo para el día a día");
 //
 //        reviewRepository.save(r1);
 //        reviewRepository.save(r2);
 //        reviewRepository.save(r3);
 //        reviewRepository.save(r4);
 //        reviewRepository.save(r5);
+//        reviewRepository.save(r6);
 //
 //
 //        List<Product> l1 = new ArrayList<>();
@@ -119,37 +123,39 @@ public class DatabaseUsage implements CommandLineRunner {
 //        Order o2 = new Order(u3, date, l2);
 //        Order o3 = new Order(u4, date, l3);
 //        Order o4 = new Order(u3, date, l3);
+//        Order o5 = new Order(u6, date, l2);
 //
 //        orderRepository.save(o1);
 //        orderRepository.save(o2);
 //        orderRepository.save(o3);
 //        orderRepository.save(o4);
+//        orderRepository.save(o5);
 //
 //
 //        Promotion pr1 = new Promotion(20);
 //        pr1.setProduct(p3);
 //
 //        promotionRepository.save(pr1);
-
-
-        List<Product> query = productRepository.findAll();
-        for (Product p : query) {
-            System.out.println("PRODUCTO= " + p.getName());
-        }
-
-        List<Review> query2 = reviewRepository.findAll();
-        for (Review r : query2) {
-            System.out.println("REVIEW= " + "producto: " + r.getProduct().getName() + " | " + r.getText());
-        }
-
-        List<Promotion> query3 = promotionRepository.findAll();
-        for (Promotion r : query3) {
-            System.out.println("PROMOTION= " + "producto: " + r.getProduct().getName() + " | " + r.getPromotion());
-        }
-
-        List<User> query4 = userRepository.findAll();
-        for (User u : query4) {
-            System.out.println("Usuario= " + u.getUsername() + " ROLES:" + u.getRoles().toString());
-        }
+//
+//
+//        List<Product> query = productRepository.findAll();
+//        for (Product p : query) {
+//            System.out.println("PRODUCTO= " + p.getName());
+//        }
+//
+//        List<Review> query2 = reviewRepository.findAll();
+//        for (Review r : query2) {
+//            System.out.println("REVIEW= " + "producto: " + r.getProduct().getName() + " | " + r.getText());
+//        }
+//
+//        List<Promotion> query3 = promotionRepository.findAll();
+//        for (Promotion r : query3) {
+//            System.out.println("PROMOTION= " + "producto: " + r.getProduct().getName() + " | " + r.getPromotion());
+//        }
+//
+//        List<User> query4 = userRepository.findAll();
+//        for (User u : query4) {
+//            System.out.println("Usuario= " + u.getUsername() + " ROLES:" + u.getRoles().toString());
+//        }
     }
 }
