@@ -25,7 +25,7 @@ Distinguimos tres tipos de usuarios:
 * Devolver lista de pedidos
 * Insertar nuevo producto
 
-## Funcionalidades servicio interno
+## Funcionalidades [servicio interno](https://github.com/c0mputer64/Buyify-rest)
 * Enviar mails
 * Generación de pdf (facturas)
 
