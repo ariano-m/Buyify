@@ -20,14 +20,14 @@ Distinguimos tres tipos de usuarios:
 * Reseña
 
 ## Aplicación
-* Devolver lista de productos (paginated)
+* Devolver lista de productos
 * Devolver lista de usuarios registrados
 * Devolver lista de pedidos
 * Insertar nuevo producto
 
 ## Funcionalidades servicio interno
 * Enviar mails
-* Reescalar imágenes en determinadas acciones (añadir producto)
+* Generación de pdf (facturas)
 
 ## Modelo E/R
 <img src="/docs/modeloER.png" alt="drawing" width="750"/>
@@ -53,6 +53,46 @@ Perfil: página de perfil de usuario
 
 ## Diagrama de flujo
 <img src="/docs/FlujoNavegacion.svg" alt="drawing" width="1000"/>
+
+## Despliegue VM
+
+1. Compilación
+
+```
+$ mvn package
+```
+
+Para omitir los tests:  
+```
+$ mvn clean package -DskipTests
+```
+
+2. Distribución
+```
+$ scp buyify-0.0.1-SNAPSHOT.jar <user>@<host>:
+$ scp buyify-rest-0.0.1-SNAPSHOT.jar <user>@<host>:
+$ scp buyify.service <user>@<host>:
+$ scp buyify-rest.service <user>@<host>:
+```
+
+3. Despliegue
+```
+$ sudo apt install openjdk-8-jdk-headless
+$ sudo apt install mysql-server
+
+$ sudo mysql_secure_installation
+$ mysqld --initialize (En caso de que no cree el directorio)
+$ sudo mysql
+$ mysql> create database db_buyify;
+$ mysql> CREATE USER 'admin'@'localhost' IDENTIFIED BY 'mascachapas';
+$ mysql> GRANT ALL ON db_buyify.* to 'admin'@'localhost';
+
+$ sudo cp buyify.service /etc/systemd/system/
+$ sudo cp buyify-rest.service /etc/systemd/system/
+
+$ sudo systemctl enable --now buyify.service
+$ sudo systemctl enable --now buyify-rest.service
+```
 
 Nombre | Correo | Usuario
 ------ | ------ | -------
