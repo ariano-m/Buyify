@@ -77,7 +77,7 @@ $ scp buyify-rest.service <user>@<host>:
 
 3. Despliegue
 ```
-$ sudo apt install openjdk-8-jdk-headless
+$ sudo apt install openjdk-8-jre-headless
 $ sudo apt install mysql-server
 
 $ sudo mysql_secure_installation
