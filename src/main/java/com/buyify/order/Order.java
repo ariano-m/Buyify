@@ -5,12 +5,13 @@ import com.buyify.user.User;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order implements Serializable {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
