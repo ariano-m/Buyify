@@ -1,8 +1,8 @@
 version: '3.7'
 
 services:
-  mysql:
-    container_name: mysql
+  mysql-master:
+    container_name: mysql-master
     image: mysql:8.0.19
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -13,7 +13,40 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - ./volumes/mysql:/var/lib/mysql
+      - ./volumes/mysql-master/data:/var/lib/mysql
+      - ./volumes/mysql-master/conf.d:/etc/mysql/conf.d
+    restart: 'no'
+
+  mysql-slave-1:
+    container_name: mysql-slave-1
+    image: mysql:8.0.19
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'db_buyify'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'mascachapas'
+    ports:
+      - 3307:3306
+    volumes:
+      - ./volumes/mysql-slave-1/data:/var/lib/mysql
+      - ./volumes/mysql-slave-1/conf.d:/etc/mysql/conf.d
+    restart: 'no'
+
+  mysql-slave-2:
+    container_name: mysql-slave-2
+    image: mysql:8.0.19
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'db_buyify'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'mascachapas'
+    ports:
+      - 3308:3306
+    volumes:
+      - ./volumes/mysql-slave-2/data:/var/lib/mysql
+      - ./volumes/mysql-slave-2/conf.d:/etc/mysql/conf.d
     restart: 'no'
 
   redis:
@@ -41,16 +74,16 @@ services:
     # build:
       # context: .
       # dockerfile: Dockerfile
-    image: 'buyify/buyify-web:3'
+    image: 'buyify/buyify-web:latest'
     depends_on:
-      - mysql
+      - mysql-master
       - redis
 
   buyify-web-2:
     container_name: buyify-web-2
-    image: 'buyify/buyify-web:3'
+    image: 'buyify/buyify-web:latest'
     depends_on:
-      - mysql
+      - mysql-master
       - redis
 
   haproxy-rest:
@@ -69,10 +102,10 @@ services:
     container_name: buyify-rest-1
     image: 'buyify/buyify-rest:2'
     depends_on:
-      - mysql
+      - mysql-master
 
   buyify-rest-2:
     container_name: buyify-rest-2
     image: 'buyify/buyify-rest:2'
     depends_on:
-      - mysql
+      - mysql-master
