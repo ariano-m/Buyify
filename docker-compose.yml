@@ -22,3 +22,10 @@ services:
     command: redis-server --requirepass mascachapas
     ports:
       - '6379:6379'
+
+  buyify:
+    container_name: buyify
+    image: 'buyify/buyify-web:3'
+    depends_on:
+      - mysql
+      - redis
