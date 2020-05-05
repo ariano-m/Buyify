@@ -13,7 +13,7 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /home/jpc/Desktop/mysql:/var/lib/mysql
+      - ./volumes/mysql:/var/lib/mysql
     restart: 'no'
 
   redis:
@@ -23,9 +23,56 @@ services:
     ports:
       - '6379:6379'
 
-  buyify:
-    container_name: buyify
+  haproxy-web:
+    container_name: haproxy-web
+    image: 'haproxy:2.1'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8404:8404'
+    volumes:
+      - ./volumes/haproxy-web:/usr/local/etc/haproxy:ro
+    depends_on:
+      - buyify-web-1
+      - buyify-web-2
+
+  buyify-web-1:
+    container_name: buyify-web-1
+    # build:
+      # context: .
+      # dockerfile: Dockerfile
     image: 'buyify/buyify-web:3'
     depends_on:
       - mysql
       - redis
+
+  buyify-web-2:
+    container_name: buyify-web-2
+    image: 'buyify/buyify-web:3'
+    depends_on:
+      - mysql
+      - redis
+
+  haproxy-rest:
+    container_name: haproxy-rest
+    image: 'haproxy:2.1'
+    ports:
+      # - '37190:80'
+      - '8405:8404'
+    volumes:
+      - ./volumes/haproxy-rest:/usr/local/etc/haproxy:ro
+    depends_on:
+      - buyify-rest-1
+      - buyify-rest-2
+
+  buyify-rest-1:
+    container_name: buyify-rest-1
+    image: 'buyify/buyify-rest:2'
+    depends_on:
+      - mysql
+
+  buyify-rest-2:
+    container_name: buyify-rest-2
+    image: 'buyify/buyify-rest:2'
+    depends_on:
+      - mysql

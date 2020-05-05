@@ -38,7 +38,7 @@ public class UserController implements Serializable {
         model.addAttribute("username", user.getUsername());
 
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.exchange("http://localhost:9999/mail/" + user.getId(), HttpMethod.GET, null, Void.class);
+        restTemplate.exchange("http://haproxy-rest/mail/" + user.getId(), HttpMethod.GET, null, Void.class);
 
         return "registered";
     }
