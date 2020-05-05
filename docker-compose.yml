@@ -1,7 +1,8 @@
 version: '3.7'
 
 services:
-  mysql:
+  mysql-master:
+    container_name: mysql-master
     image: mysql:8.0.19
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -12,5 +13,99 @@ services:
     ports:
       - 3306:3306
     volumes:
-      - /home/jpc/Desktop/mysql:/var/lib/mysql
+      - ./volumes/mysql-master/data:/var/lib/mysql
+      - ./volumes/mysql-master/conf.d:/etc/mysql/conf.d
     restart: 'no'
+
+  mysql-slave-1:
+    container_name: mysql-slave-1
+    image: mysql:8.0.19
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'db_buyify'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'mascachapas'
+    ports:
+      - 3307:3306
+    volumes:
+      - ./volumes/mysql-slave-1/data:/var/lib/mysql
+      - ./volumes/mysql-slave-1/conf.d:/etc/mysql/conf.d
+    restart: 'no'
+
+  mysql-slave-2:
+    container_name: mysql-slave-2
+    image: mysql:8.0.19
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'db_buyify'
+      MYSQL_USER: 'admin'
+      MYSQL_PASSWORD: 'mascachapas'
+    ports:
+      - 3308:3306
+    volumes:
+      - ./volumes/mysql-slave-2/data:/var/lib/mysql
+      - ./volumes/mysql-slave-2/conf.d:/etc/mysql/conf.d
+    restart: 'no'
+
+  redis:
+    container_name: redis
+    image: 'redis:latest'
+    command: redis-server --requirepass mascachapas
+    ports:
+      - '6379:6379'
+
+  haproxy-web:
+    container_name: haproxy-web
+    image: 'haproxy:2.1'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8404:8404'
+    volumes:
+      - ./volumes/haproxy-web:/usr/local/etc/haproxy:ro
+    depends_on:
+      - buyify-web-1
+      - buyify-web-2
+
+  buyify-web-1:
+    container_name: buyify-web-1
+    # build:
+      # context: .
+      # dockerfile: Dockerfile
+    image: 'buyify/buyify-web:latest'
+    depends_on:
+      - mysql-master
+      - redis
+
+  buyify-web-2:
+    container_name: buyify-web-2
+    image: 'buyify/buyify-web:latest'
+    depends_on:
+      - mysql-master
+      - redis
+
+  haproxy-rest:
+    container_name: haproxy-rest
+    image: 'haproxy:2.1'
+    ports:
+      # - '37190:80'
+      - '8405:8404'
+    volumes:
+      - ./volumes/haproxy-rest:/usr/local/etc/haproxy:ro
+    depends_on:
+      - buyify-rest-1
+      - buyify-rest-2
+
+  buyify-rest-1:
+    container_name: buyify-rest-1
+    image: 'buyify/buyify-rest:2'
+    depends_on:
+      - mysql-master
+
+  buyify-rest-2:
+    container_name: buyify-rest-2
+    image: 'buyify/buyify-rest:2'
+    depends_on:
+      - mysql-master

@@ -6,9 +6,10 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
-public class Promotion {
+public class Promotion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

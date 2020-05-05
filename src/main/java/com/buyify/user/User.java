@@ -15,12 +15,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Entity
-public class User {
+public class User implements Serializable {
 
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles;

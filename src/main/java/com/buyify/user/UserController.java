@@ -10,9 +10,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.Serializable;
 
 @Controller
-public class UserController {
+public class UserController implements Serializable {
 
     @Autowired
     private UserRepository userRepository;
@@ -37,7 +38,7 @@ public class UserController {
         model.addAttribute("username", user.getUsername());
 
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.exchange("http://localhost:9999/mail/" + user.getId(), HttpMethod.GET, null, Void.class);
+        restTemplate.exchange("http://haproxy-rest/mail/" + user.getId(), HttpMethod.GET, null, Void.class);
 
         return "registered";
     }

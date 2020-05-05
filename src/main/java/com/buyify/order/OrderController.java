@@ -58,7 +58,7 @@ public class OrderController {
         orderRepository.save(order);
         
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.exchange("http://localhost:9999/pedido/" + order.getId(), HttpMethod.GET, null, Void.class);
+        restTemplate.exchange("http://haproxy-rest/pedido/" + order.getId(), HttpMethod.GET, null, Void.class);
 
         RedirectView redirectView = new RedirectView("profile");
         redirectView.setExposeModelAttributes(false);
@@ -78,7 +78,7 @@ public class OrderController {
         headers.setAccept(Collections.singletonList(MediaType.APPLICATION_OCTET_STREAM));
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
-        return restTemplate.exchange("http://localhost:9999/factura/" + id, HttpMethod.GET, entity, byte[].class);
+        return restTemplate.exchange("http://haproxy-rest/factura/" + id, HttpMethod.GET, entity, byte[].class);
     }
 
 }
