@@ -94,6 +94,18 @@ $ sudo systemctl enable --now buyify.service
 $ sudo systemctl enable --now buyify-rest.service
 ```
 
+## Fase 4
+En esta fase se ha procedido a la dockerización de todos los elementos que conforman la aplicación:
+- Tres instacias de la base de datos. Una master y dos slaves.
+- Una instacia redis para la caché y sesión distribuida.
+- Dos instancia de Haproxy para el balance de carga. Una para el servicio interno y otra para la app web.
+- Dos instacias de la app web.
+- Dos instacias del servicio interno.
+
+Todos estos elementos están definidos en el fichero [docker-compose.yml](https://github.com/c0mputer64/Buyify/blob/master/docker-compose.yml) y los archivos de configuración se pueden encontrar [aquí](https://github.com/c0mputer64/Buyify/tree/master/docs).
+
+
+
 Nombre | Correo | Usuario
 ------ | ------ | -------
 Adrián Riaño Martínez | a.riano.2016 at alumnos.urjc.es | c0mputer64
