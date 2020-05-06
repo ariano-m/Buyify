@@ -18,6 +18,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @CacheEvict(allEntries = true)
     Product save(Product product);
 
+    @CacheEvict(allEntries = true)
+    void deleteById(Long id);
+
     @Transactional(readOnly = true)
     @Cacheable
     List<Product> findAll();
